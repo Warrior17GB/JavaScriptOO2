@@ -1,17 +1,18 @@
-import {Cliente} from "./Cliente.js"; // import = Para importar uma classe de um outro arquivo, essa classe precisa ser exportada para poder ser importada;
-import {ContaCorrente} from "./ContaCorrente.js";
+import { Cliente } from "./Cliente.js"; // import = Para importar uma classe de um outro arquivo, essa classe precisa ser exportada para poder ser importada;
+import { Gerente } from "./Funcionarios/Gerente.js";
+import { Diretor } from "./Funcionarios/Diretor.js";
+import { SistemaAutenticacao } from "./SistemaAutenticacao.js"
 
-const cliente1 = new Cliente("Gabriel", 12332112300); // Instanciando um novo objeto de uma classe;
+const diretor = new Diretor("Rodrigo, 10000, 12332112300");
+diretor.cadastrarSenha("pass123");
+const gerente = new Gerente("Andressa, 5000, 12355422300");
+gerente.cadastrarSenha("pass123");
+const cliente = new Cliente("Beatriz", 22211133300, "pass123");
 
-const cliente2 = new Cliente("Michele", 32112332100);
-console.log(cliente2.cpf)
+const logadoDiretor = SistemaAutenticacao.login(diretor, "pass123");
+const logadoGerente = SistemaAutenticacao.login(gerente, "pass123");
+const logadoCliente = SistemaAutenticacao.login(cliente, "pass123");
 
-const contaCorrenteGabriel = new ContaCorrente(cliente1, 1001);
-contaCorrenteGabriel.depositar(1000);// Utilizando um dos métodos da classe;
-
-const conta2 = new ContaCorrente(cliente2, 1001);
-
-contaCorrenteGabriel.transferir(200, conta2);
-
-console.log(contaCorrenteGabriel);
-console.log(ContaCorrente.numeroContas);
+console.log("Diretor Logado: ", logadoDiretor);
+console.log("Gerente Logado: ", logadoGerente);
+console.log("Cliente Logado: ", logadoCliente);
